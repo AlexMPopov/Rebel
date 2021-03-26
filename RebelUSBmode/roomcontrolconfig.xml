@@ -1,0 +1,23 @@
+<Extensions>
+  <Version>1.8</Version>
+  <Panel>
+    <Order>1</Order>
+    <PanelId>disableusb</PanelId>
+    <Origin>local</Origin>
+    <Type>Home</Type>
+    <Icon>Input</Icon>
+    <Color>#FFA300</Color>
+    <Name>Disable USB mode</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
+  <Panel>
+    <Order>2</Order>
+    <PanelId>enableusb</PanelId>
+    <Origin>local</Origin>
+    <Type>Home</Type>
+    <Icon>Input</Icon>
+    <Color>#335A9A</Color>
+    <Name>Enable USB mode</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
+</Extensions>
