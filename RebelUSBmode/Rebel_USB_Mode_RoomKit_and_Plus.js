@@ -1,7 +1,8 @@
 /**
  * Rebel USB Mode
+ * For RoomKit and RoomKit Plus devices
  * 
- * Uses The Room Analytics People Count API to alert users in a room if they exceed the set capacity limits.
+ * Thanks to Robert McGonigle Jr & Enrico Conedera and their USB Mode Project which served as inspiration for this project.
  * 
  */
 
