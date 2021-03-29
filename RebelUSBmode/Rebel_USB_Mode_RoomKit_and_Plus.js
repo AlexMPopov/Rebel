@@ -8,9 +8,12 @@
 
 import xapi from 'xapi';
 
+const usbname = 'Rebel Cam' //Set to name of USB devices shown in system preferences
+
 var usbmodestatus;
 var usbconnected;
 var hdmiconnected;
+var systemtype;
 
 function activateusb () {
   console.log("USB variable is " + usbconnected + " HDMI varable is " + hdmiconnected)
@@ -39,6 +42,7 @@ function activateusb () {
     Visibility: 'Hidden'
   })
   usbmodestatus = true;
+  userguide()
   }
   else {
     xapi.Command.UserInterface.Message.Alert.Display({
@@ -68,15 +72,6 @@ function deactivateusb (){
   usbmodestatus = false;
 }
 
-xapi.event.on('UserInterface.Extensions.Panel Clicked', (event) => {
-  if(event.PanelId === 'enableusb') {
-    activateusb();
-  }
-  else if (event.PanelId === 'disableusb') {
-    deactivateusb();
-  }
-})
-
 function autostartusb () {
   if (hdmiconnected == 'True' && usbconnected == 'True'){
     console.log("Both HDMi and USB is connected, auto starting USB Mode...")
@@ -89,6 +84,7 @@ function autostartusb () {
       }).catch((error) => { console.error(error); });
       }
     else if (hdmiconnected == 'False' || usbconnected == 'False'  )
+    xapi.command("UserInterface Message Prompt Clear")
     deactivateusb()
   }
 
@@ -97,6 +93,24 @@ function featurescontrol (state) {
            xapi.config.set('UserInterface Features Call Start:', state);
          xapi.config.set('UserInterface Features Call JoinWebex:', state);
          xapi.config.set('UserInterface Features Share Start', state);
+}
+
+
+xapi.event.on('UserInterface.Extensions.Panel Clicked', (event) => {
+  if(event.PanelId === 'enableusb') {
+    activateusb();
+  }
+  else if (event.PanelId === 'disableusb') {
+    deactivateusb();
+  }
+})
+
+function userguide () {
+     xapi.Command.UserInterface.Message.Alert.Display({
+      Title: "Usage of USB mode",
+      Text: "To use USB Mode you must set your meeting client to use " + systemtype + " as speaker and " + usbname +" as Microphone and webcam in your meeitng client. (Temas, Zoom, Hangouts etc)",
+      Duration: '60',
+    });
 }
 
 xapi.status.on('Video Output Connector 2 Connected', (event) => {
@@ -122,6 +136,16 @@ xapi.status.on('Standby State', (event) => {
       console.log("Input connector 2 is " + inputstatus)
       hdmiconnected=inputstatus;
       })
+    xapi.status.get('SystemUnit ProductId').then( (productid) => {
+      console.log("Product ID is " + productid)
+      switch(productid) {
+        case 'Cisco Webex Room Kit':
+        systemtype='CS-KIT';
+        case 'Cisco Webex Codec Plus':
+        systemtype='CS-CODECPLUS'
+      }
+      console.log('EDID System type for userguide is set to ' + systemtype)
+     })
   }
 })
 
