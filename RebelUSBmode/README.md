@@ -13,7 +13,11 @@ Dr. Emmett Brown:
 
 
 #Instructions
+
 Upload UI Exstension file (remember to use "Merge" if you already have other UI Exstensions
+
 If Codec pro or SX80, Upload the ce-audio-config Macro which sets Audio console correctly.
+
 Upload the Rebel USB mode macro for your device model.
+
 Say a prayer :)
