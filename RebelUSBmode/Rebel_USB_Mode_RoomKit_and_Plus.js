@@ -6,6 +6,7 @@
  * 
  */
 
+
 import xapi from 'xapi';
 
 const usbname = 'Rebel Cam' //Set to name of USB devices shown in system preferences
@@ -141,8 +142,10 @@ xapi.status.on('Standby State', (event) => {
       switch(productid) {
         case 'Cisco Webex Room Kit':
         systemtype='CS-KIT';
+        break;
         case 'Cisco Webex Codec Plus':
         systemtype='CS-CODECPLUS'
+        break;
       }
       console.log('EDID System type for userguide is set to ' + systemtype)
      })
