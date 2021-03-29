@@ -1,5 +1,5 @@
 # Rebel USB mode for Room Kit and Codec pluss
-This is our own take on the USB project. It is intended to be used in applications where you only have 1 monitor connected and the USB catpure devices is connected to HDMI output 2.
+This is our own take on the USB project lead by Robert McGonigle Jr & Enrico Conedera. It is intended to be used in applications where you only have 1 monitor connected and the USB catpure devices is connected to HDMI output 2.
 This has been tested and used with Inogeni 4KXUSB3 HDMI capture devices
 
 We use the Video matrix feature to route the camera to HDMI 2 out.
