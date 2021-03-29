@@ -1,5 +1,5 @@
 # Rebel Cisco Codec projects
-This repository contains Macros and scripts used at Rebel.
+This repository contains macros and scripts used at Rebel.
 
 To quote Marty McFly:
 “I Guess You Guys Aren’t Ready For That Yet. But Your Kids Are Gonna Love It.”
