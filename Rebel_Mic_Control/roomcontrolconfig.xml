@@ -1,0 +1,149 @@
+<Extensions>
+  <Version>1.7</Version>
+  <Panel>
+    <Order>1</Order>
+    <PanelId>miccontrol</PanelId>
+    <Origin>local</Origin>
+    <Type>Statusbar</Type>
+    <Icon>Microphone</Icon>
+    <Color>#A866FF</Color>
+    <Name>Microphone controll</Name>
+    <ActivityType>Custom</ActivityType>
+    <Page>
+      <Name>Microphone &amp; Mute Controls</Name>
+      <Row>
+        <Name/>
+        <Widget>
+          <WidgetId>widget_11</WidgetId>
+          <Name>Mic 1</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_10</WidgetId>
+          <Name>Mic 2</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_9</WidgetId>
+          <Name>Mic 3</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_8</WidgetId>
+          <Name>Mic 4</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+      </Row>
+      <Row>
+        <Name>On/Off</Name>
+        <Widget>
+          <WidgetId>1</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>2</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>3</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>4</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+      </Row>
+      <Row>
+        <Name/>
+        <Widget>
+          <WidgetId>widget_21</WidgetId>
+          <Name>Mic 5</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_20</WidgetId>
+          <Name>Mic 6</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_19</WidgetId>
+          <Name>Mic 7</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_18</WidgetId>
+          <Name>Mic 8</Name>
+          <Type>Text</Type>
+          <Options>size=1;fontSize=normal;align=center</Options>
+        </Widget>
+      </Row>
+      <Row>
+        <Name>On/Off</Name>
+        <Widget>
+          <WidgetId>5</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>6</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>7</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>8</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+      </Row>
+      <Row>
+        <Name/>
+        <Widget>
+          <WidgetId>widget_16</WidgetId>
+          <Name>Enable mute functions on microphones outside of call</Name>
+          <Type>Text</Type>
+          <Options>size=3;fontSize=normal;align=center</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_17</WidgetId>
+          <Type>Spacer</Type>
+          <Options>size=1</Options>
+        </Widget>
+      </Row>
+      <Row>
+        <Name>Mute functions On/Off</Name>
+        <Widget>
+          <WidgetId>mutefunctions</WidgetId>
+          <Type>ToggleButton</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_14</WidgetId>
+          <Type>Spacer</Type>
+          <Options>size=1</Options>
+        </Widget>
+        <Widget>
+          <WidgetId>widget_15</WidgetId>
+          <Type>Spacer</Type>
+          <Options>size=1</Options>
+        </Widget>
+      </Row>
+      <Options/>
+    </Page>
+  </Panel>
+</Extensions>
