@@ -1,3 +1,20 @@
+/*
+*       Rebel USB Mode
+* 
+*
+*   Written based on the Original USB Mode project lead by Robert McGonigle Jr & Enrico Conedera
+*   Written by Alexander M. Popov @ Rebel   
+*   
+*   Use at your own risk
+*
+*
+*   Version: 3.0 Rev date: 09.04.2021
+*	  Feature update in 3.0: Script now changes the camera sendt to USB based on what is set on MainVideoSoruce so support camear switching from touch panel.
+*
+*/
+
+
+
 import xapi from 'xapi';
 
 const usbname = 'Rebel Cam' //Set to name of USB devices shown in system preferences
@@ -7,13 +24,16 @@ var usbmodestatus;
 var usbconnected;
 var hdmiconnected;
 var systemtype;
+var cameraInUse
 
+
+/*Function activates USB mode and sets USB Mode status variable to true*/
 function activateusb () {
   console.log("USB variable is " + usbconnected + " HDMI varable is " + hdmiconnected)
   if (usbconnected == 'True' && hdmiconnected == 'True'){
   xapi.command('Video Matrix Assign', {
     Output: 2,
-   SourceId: 1,
+   SourceId: cameraInUse,
   })
   xapi.command('Audio VuMeter Start', {
     ConnectorId: 2,
@@ -89,6 +109,23 @@ function featurescontrol (state) {
          xapi.config.set('UserInterface Features Share Start', state);
 }
 
+function changecamera(){
+	if (usbmodestatus = true){
+		xapi.command('Video Matrix Assign', {
+    		Output: 2,
+   			SourceId: cameraInUse,
+  		})
+	}
+}
+
+function userguide () {
+     xapi.Command.UserInterface.Message.Alert.Display({
+      Title: "Usage of USB mode",
+      Text: "To use USB Mode you must set your meeting client to use " + systemtype + " as speaker and " + usbname +" as Microphone and webcam in your meeitng client. (Temas, Zoom, Hangouts etc)",
+      Duration: '60',
+    });
+}
+
 
 xapi.event.on('UserInterface.Extensions.Panel Clicked', (event) => {
   if(event.PanelId === 'enableusb') {
@@ -99,24 +136,16 @@ xapi.event.on('UserInterface.Extensions.Panel Clicked', (event) => {
   }
 })
 
-function userguide () {
-     xapi.Command.UserInterface.Message.Alert.Display({
-      Title: "Usage of USB mode",
-      Text: "To use USB Mode you must set your meeting client to use " + systemtype + " as speaker and " + usbname +" as Microphone and webcam in your meeitng client. (Temas, Zoom, Hangouts etc)",
-      Duration: '60',
-    });
-}
-
 xapi.status.on('Video Output Connector 2 Connected', (event) => {
-console.log("Ouput connector 2 is " + event)
-usbconnected=event;
-autostartusb()
+	console.log("Ouput connector 2 is " + event)
+	usbconnected=event;
+	autostartusb()
 })
 
 xapi.status.on('Video input Connector 2 Connected', (event) => {
-console.log("Input connector 2 is " + event)
-hdmiconnected=event;
-autostartusb()
+	console.log("Input connector 2 is " + event)
+	hdmiconnected=event;
+	autostartusb()
 })
 
 xapi.status.on('Standby State', (event) => {
@@ -143,6 +172,11 @@ xapi.status.on('Standby State', (event) => {
       console.log('EDID System type for userguide is set to ' + systemtype)
       
      })
+    xapi.status.get('Video Input MainVideoSource').then ( (mainVideoId) => {
+		console.log('Startup MainVideoSource is set to ' + mainVideoId)
+		cameraInUse = mainVideoId
+
+	})
     
   }
   autostartusb()
@@ -153,4 +187,10 @@ xapi.event.on('UserInterface Message Prompt Response', (event) => {
     console.log("Prompt was selected Yes to start USB Mode")
     activateusb()
   }
+})
+
+xapi.status.on('Video Input MainVideoSource', (event) => {
+	console.log('detected main video soruce change, it is now input ' + event)
+	cameraInUse = event
+	changecamera();
 })
