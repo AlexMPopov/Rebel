@@ -1,15 +1,29 @@
-/**
- * Rebel USB Mode
- * For RoomKit and RoomKit Plus devices
- * 
- * Thanks to Robert McGonigle Jr & Enrico Conedera and their USB Mode Project which served as inspiration for this project.
- * 
- */
+/*
+*       Rebel USB Mode
+*   For RoomKit and RoomKit Plus devices
+* 
+*
+*   Written based on the Original USB Mode project lead by Robert McGonigle Jr & Enrico Conedera
+*   Written by Alexander M. Popov @ Rebel   
+*   
+*   Use at your own risk
+*
+*
+*   Version: 3.5 Rev date: 11.06.2021
+*   
+* Feature update in 3.0: Script now changes the camera sendt to USB based on what is set on MainVideoSoruce so support camear switching from touch panel.
+*   Feature update in 3.5: Changed to use const set in the begnining of script to define HDMI input/output numbers
+*
+*/
+
 
 
 import xapi from 'xapi';
 
 const usbname = 'Rebel Cam' //Set to name of USB devices shown in system preferences
+const hdmiInputUsed = 2     //Set HDMI input used for screen sharing
+const hdmiOutputUsed = 1    //Set HDMI Output number used to USB capture device
+const cameraHdmiUsed = 1    //Set HDMI input used for camera
 
 var usbmodestatus;
 var usbconnected;
@@ -20,8 +34,8 @@ function activateusb () {
   console.log("USB variable is " + usbconnected + " HDMI varable is " + hdmiconnected)
   if (usbconnected == 'True' && hdmiconnected == 'True'){
   xapi.command('Video Matrix Assign', {
-    Output: 2,
-   SourceId: 1,
+    Output: hdmiOutputUsed,
+   SourceId: cameraHdmiUsed,
   })
   xapi.config.set('Audio Output Line 1 Mode', 'On')
   xapi.config.set('Audio Output Line 1 OutputType', 'Microphone')
@@ -114,14 +128,14 @@ function userguide () {
     });
 }
 
-xapi.status.on('Video Output Connector 2 Connected', (event) => {
-console.log("Ouput connector 2 is " + event)
+xapi.status.on(`Video Output Connector ${hdmiOutputUsed} Connected`, (event) => {
+console.log(`Ouput connector ${hdmiOutputUsed} is ${event}`)
 usbconnected=event;
 autostartusb()
 })
 
-xapi.status.on('Video input Connector 2 Connected', (event) => {
-console.log("Input connector 2 is " + event)
+xapi.status.on(`Video input Connector ${hdmiInputUsed} Connected`, (event) => {
+console.log(`Input connector ${hdmiInputUsed} is ${event}`)
 hdmiconnected=event;
 autostartusb()
 })
@@ -129,12 +143,12 @@ autostartusb()
 xapi.status.on('Standby State', (event) => {
   console.log("standby state event " + event)
   if (event == 'Off') {
-    xapi.status.get('Video Output Connector 2 Connected').then( (outputstatus) => {
-      console.log("Ouput connector 2 is " + outputstatus)
+    xapi.status.get(`Video Output Connector ${hdmiOutputUsed} Connected`).then( (outputstatus) => {
+      console.log(`Ouput connector ${hdmiOutputUsed} is ${outputstatus}`)
       usbconnected=outputstatus;
     })
-    xapi.status.get('Video input Connector 2 Connected').then( (inputstatus) => {
-      console.log("Input connector 2 is " + inputstatus)
+    xapi.status.get(`Video input Connector ${hdmiInputUsed} Connected`).then( (inputstatus) => {
+      console.log(`Input connector ${hdmiInputUsed} is  ${inputstatus}`)
       hdmiconnected=inputstatus;
       })
     xapi.status.get('SystemUnit ProductId').then( (productid) => {
