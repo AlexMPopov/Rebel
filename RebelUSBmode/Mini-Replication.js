@@ -62,7 +62,7 @@ function autostartusb (){
 		xapi.command('UserInterface Message Prompt Display',{
 			Duration: 60,
 			Title: 'USB and HDMI is connected',
-			Text: 'Do you want to enable USB Bode for PC based Meeting?',
+			Text: 'Do you want to enable USB Mode for PC based Meeting?',
 			'Option.1': 'Yes Enable USB Mode',
 			'Option.2': 'No do NOT enable USB Mode'
 		});
