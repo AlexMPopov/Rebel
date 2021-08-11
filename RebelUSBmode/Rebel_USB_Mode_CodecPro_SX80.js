@@ -121,7 +121,7 @@ function changecamera(){
 function userguide () {
      xapi.Command.UserInterface.Message.Alert.Display({
       Title: "Usage of USB mode",
-      Text: "To use USB Mode you must set your meeting client to use " + systemtype + " as speaker and " + usbname +" as Microphone and webcam in your meeitng client. (Temas, Zoom, Hangouts etc)",
+      Text: "To use USB Mode you must set your meeting client to use " + systemtype + " as speaker, Microphone and webcam in your meeitng client. (Teams, Zoom, Google meet etc)",
       Duration: '60',
     });
 }
